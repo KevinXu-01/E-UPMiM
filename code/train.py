@@ -193,11 +193,11 @@ def train(
                         for key, value in metrics.items():
                             writer.add_scalar('eval/' + key, value, iter)
 
-                    if 'hitrate' in metrics:
-                        hitrate = metrics['hitrate']
+                    if 'recall' in metrics:
+                        recall = metrics['recall']
                         global best_metric
-                        if hitrate > best_metric:
-                            best_metric = hitrate
+                        if recall > best_metric:
+                            best_metric = recall
                             model.save(sess, best_model_path)
                             trials = 0
                         else:
