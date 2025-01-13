@@ -1,7 +1,6 @@
 # training file
 
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "5" #作者和其他人在共享8卡机器，0~3号机器常年满负载运行，因此这里设置5号机器，读者可根据需要自行设定
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2" #设置输出信息：ERROR + FATAL，隐藏tf的Warning
 
 import argparse
