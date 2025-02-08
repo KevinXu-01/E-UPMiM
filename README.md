@@ -14,7 +14,7 @@ scikit-learn
 For GPUs higher than RTX 30 series, please kindly refer to [NVIDIA/TensorFlow](https://github.com/NVIDIA/tensorflow).
 
 # Data Preparations
-We have released the processed MovieLens-1M dataset; for the Fliggy and the Amazon-Beauty datasets (and other custom datasets), please download the original data and kindly refer to code/data_preprocess.py to preprocess the data.
+We have released the processed MovieLens-1M dataset; for the Fliggy and the Amazon-Toys&Games datasets (and other custom datasets), please download the original data and kindly refer to code/data_preprocess.py to preprocess the data.
 
 # Train
 ```
