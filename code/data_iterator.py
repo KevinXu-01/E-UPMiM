@@ -22,6 +22,9 @@ class DataIterator:
     def __iter__(self):
         return self
     
+    def __len__(self):
+        return len(self.users)
+
     def next(self):
         return self.__next__()
 
@@ -65,9 +68,6 @@ class DataIterator:
             value.sort(key=lambda x: x[1])
             self.graph[user_id] = [x[0] for x in value]
         self.users = list(self.users)
-        #self.ages = list(self.ages)
-        #self.genders = list(self.genders)
-        #self.occupations = list(self.occupations)
         self.items = list(self.items)
     
     def __next__(self):
@@ -131,8 +131,10 @@ def prepare_test_data(src, target):
     return nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask
 
 if __name__ == "__main__":
-    train_file = '../dataset/movielens_data/movielens_train.txt'
-    train_data = DataIterator(train_file, batch_size=128, maxlen=50, train_flag=1)
-    for src, tar in train_data:
-        data_iter = prepare_test_data(src, tar)
-        print(list(data_iter))
+    test_file = '../dataset/movielens_data/movielens_test.txt'
+    test_data = DataIterator(test_file, batch_size=128, maxlen=50, train_flag=0)
+    for src, tar in test_data:
+        nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask = prepare_test_data(src, tar)
+        for i in range(128):
+            print(len(hist_item[i]))
+            print(len(item_id[i]))

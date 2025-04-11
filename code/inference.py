@@ -1,14 +1,17 @@
 # using this file, you can get the target user's recommendation results (ids)
 
-import faiss
-import tensorflow as tf
+import torch
 from model import *
+from comi_rec import *
 from data_iterator import DataIterator
 import numpy as np
+from ann_search import find_topN_items
 
-def get_model(model_type, user_count, item_count, batch_size, maxlen):
+def get_model(model_type, user_count, item_count, batch_size, maxlen, device):
     if model_type == 'E-UPMiM':
-        model = Model_E_UPMiM(user_count, item_count, 32, 32, batch_size, 3, 4, maxlen)
+        model = Model_E_UPMiM(user_count, item_count, 32, 32, batch_size, 3, 4, maxlen, device = device)
+    elif model_type == 'Comi_Rec':
+        model = Model_Comi_Rec(user_count, item_count, 32, 32, batch_size, 3, 4, maxlen, device = device)
     else:
         print("Invalid model_type : %s", model_type)
         return
@@ -19,33 +22,26 @@ def prepare_test_data(src, target):
     hist_item, hist_mask = target
     return nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask
 
-def inference(sess, batch_size, num_interest, test_data, model, topN = 10):
-    item_embs = model.output_item(sess)
-    res = faiss.StandardGpuResources()
-    flat_config = faiss.GpuIndexFlatConfig()
-    flat_config.device = 7
-    # return
-    try:
-        gpu_index = faiss.GpuIndexFlatIP(res, 32, flat_config)
-        gpu_index.add(item_embs)
-    except Exception as e:
-        return {}
-    iii = 0
+def inference(batch_size, num_interest, test_data, model, topN = 10):
+    model.eval()
+    item_embs = model.output_item()
+    
     for src, tgt in test_data:
-        if iii >= 1:
-            break
         nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask = prepare_test_data(src, tgt)
-        user_embs = model.output_user(sess, [nick_id, user_age, user_gender, user_occup, hist_item, hist_mask])
+        user_embs, _ = model("test", nick_id, user_age, user_gender, user_occup, hist_item, hist_item, hist_mask)
+        # user_embs = model.output_user(nick_id) # for Comi_Rec
         user_index = 0
         I = []
         while user_index < batch_size:
-            user_index += 1
             preds = []
             for i in range(num_interest):
                 _user_embs = user_embs[user_index:user_index+1, i, :]
-                d, index = gpu_index.search(_user_embs, topN)
+                # _user_embs = user_embs[user_index:user_index+1, :] for Comi_Rec
+                d, index = find_topN_items(_user_embs.detach().cpu().numpy(), item_embs.detach().cpu().numpy(), topN)
                 preds.append(index)
-            I.append(np.concatenate(preds))
+            print(f"user id: {nick_id[user_index]}, history item: {hist_item[user_index]}, GT: {item_id[user_index]}, predictions: {preds}")
+            I.append(np.stack(preds, axis = 0))
+            user_index += 1
         for i, iid_list in enumerate(item_id):
             item_list_set = set()
             true_item_set = set(iid_list)
@@ -54,21 +50,19 @@ def inference(sess, batch_size, num_interest, test_data, model, topN = 10):
                 for item in iid:
                     if item in true_item_set:
                         item_list_set.add(item)
-            print(f"user id: {nick_id[i]}, predictions: {item_list_set}")
-        iii += 1
+            hit_ratio = 0 if len(item_list_set) == 0 else len(item_list_set) / len(item_id[i])
+            print(f"user id: {nick_id[i]}, true-positive predictions: {item_list_set}, hit rate for the user: {hit_ratio}")
 
 
 if __name__ == '__main__':
-    gpu_options = tf.GPUOptions(allow_growth=True)
     n_uid = 6040
     n_mid = 3417
     batch_size = 128
     max_len = 10
     num_interest = 3
-    model = get_model('E-UPMiM', n_uid, n_mid, batch_size, max_len)
-    with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
-        model.restore(sess, '../best_model/movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10/')
-        test_file = "../dataset/movielens_data/movielens_test.txt"
-        test_data = DataIterator(test_file, batch_size, max_len, train_flag = 2)
-        inference(sess, batch_size, num_interest, test_data, model)
-        
+    model = get_model('E-UPMiM', n_uid, n_mid, batch_size, max_len, "cpu")
+    model.load_state_dict(torch.load("../best_model/movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10/model.pt"))
+    model.to("cpu")
+    test_file = "../dataset/movielens_data/movielens_test.txt"
+    test_data = DataIterator(test_file, batch_size, max_len, train_flag = 2)
+    inference(batch_size, num_interest, test_data, model, topN = 10)

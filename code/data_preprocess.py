@@ -61,15 +61,15 @@ def read_from_fliggy(source1, source2):
         timestamp = int(contents[3])
         users[user_id].append((product_id, timestamp))
 
-#read_from_movielens("/code/e-upmim/dataset/movielens/ratings.dat", "/code/e-upmim/dataset/movielens/users.dat")
-read_from_fliggy("/code/e-upmim/dataset/fliggy/user_item_behavior_history.csv", "/code/e-upmim/dataset/fliggy/user_profile.csv")
+read_from_movielens("/code/e-upmim/dataset/movielens/ratings.dat", "/code/e-upmim/dataset/movielens/users.dat")
+# read_from_fliggy("/code/e-upmim/dataset/fliggy/user_item_behavior_history.csv", "/code/e-upmim/dataset/fliggy/user_profile.csv")
 
 items = list(item_count.items())
 items.sort(key=lambda x:x[1], reverse=True)
 
 item_total = 0
 for index, (movie_id, num) in enumerate(items):
-    if num >= filter_size:
+    if num >= filter_size: # 5-core filter
         item_total = index + 1
     else:
         break

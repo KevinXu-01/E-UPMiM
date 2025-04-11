@@ -1,37 +1,36 @@
 # training file
 
 import os
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2" #设置输出信息：ERROR + FATAL，隐藏tf的Warning
-
 import argparse
 import random
-# import sys
 import time
 
-import tensorflow as tf
+import torch
 from data_iterator import DataIterator
 from model import *
+from comi_rec import *
 from tensorboardX import SummaryWriter
-
-import faiss
+from ann_search import find_topN_items
 import math
 import numpy as np
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--mode', type = str, default = 'train', help = 'train | test')
+parser.add_argument('--mode', type = str, default = 'train', help = 'train | test | output')
 parser.add_argument('--dataset', type = str, default = 'movielens', help = 'movielens | fliggy')
 parser.add_argument('--random_seed', type = int, default = 321)
 parser.add_argument('--embedding_dim', type = int, default = 32)
 parser.add_argument('--hidden_size', type = int, default = 32)
 parser.add_argument('--num_interest', type = int, default = 3)
 parser.add_argument('--num_layer', type = int, default = 4)
-parser.add_argument('--model_type', type = str, default = 'E-UPMiM', help = 'E-UPMiM | ..')
+parser.add_argument('--model_type', type = str, default = 'E-UPMiM', help = 'E-UPMiM | ComiRec | ...')
 parser.add_argument('--learning_rate', type = float, default = 0.001, help = '')
 parser.add_argument('--max_iter', type = int, default = 500, help = '(k)')
 parser.add_argument('--patience', type = int, default = 20)
 parser.add_argument('--coef', default = None)
 parser.add_argument('--topN', type = int, default = 10, help = '10 | 50')
+parser.add_argument('--device', type = str, default = "cpu", help = 'cpu | cuda:0')
+
 
 best_metric = 0
 args = parser.parse_args()
@@ -46,22 +45,11 @@ def prepare_test_data(src, target):
     hist_item, hist_mask = target
     return nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask
 
-def evaluate_full(sess, num_interest, valid_file, model, model_path, batch_size, maxlen, train_flag, save=True, coef=None):
+def evaluate_full(num_interest, valid_file, model, model_path, batch_size, maxlen, train_flag, save=True, coef=None):
+    model.eval()
     valid_data = DataIterator(valid_file, batch_size, maxlen, train_flag = train_flag)
     topN = args.topN
-
-    item_embs = model.output_item(sess)
-    
-
-    res = faiss.StandardGpuResources()
-    flat_config = faiss.GpuIndexFlatConfig()
-    flat_config.device = 0
-
-    try:
-        gpu_index = faiss.GpuIndexFlatIP(res, args.embedding_dim, flat_config)
-        gpu_index.add(item_embs)
-    except Exception as e:
-        return {}
+    item_embs = model.output_item()
 
     total = 0
     total_recall = 0.0
@@ -70,17 +58,20 @@ def evaluate_full(sess, num_interest, valid_file, model, model_path, batch_size,
     total_hitrate = 0
     for src, tgt in valid_data:
         nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask = prepare_test_data(src, tgt)
-        user_embs = model.output_user(sess, [nick_id, user_age, user_gender, user_occup, hist_item, hist_mask])
+
+        user_embs, _ = model("test", nick_id, user_age, user_gender, user_occup, hist_item, hist_item, hist_mask)
+        # user_embs = model.output_user(nick_id) # for Comi_Rec
         user_index = 0
         I = []
         while user_index < batch_size:
-            user_index += 1
             preds = []
             for i in range(num_interest):
                 _user_embs = user_embs[user_index:user_index+1, i, :]
-                d, index = gpu_index.search(_user_embs, topN)
+                # _user_embs = user_embs[user_index:user_index+1, :] for Comi_Rec
+                d, index = find_topN_items(_user_embs.detach().cpu().numpy(), item_embs.detach().cpu().numpy(), topN)
                 preds.append(index)
-            I.append(np.concatenate(preds))
+            user_index += 1
+            I.append(np.stack(preds, axis = 0))
         for i, iid_list in enumerate(item_id):
             recall = 0
             dcg = 0.0
@@ -122,7 +113,9 @@ def get_exp_name(dataset, model_type, batch_size, lr, maxlen, topN, save=True):
 
 def get_model(model_type, user_count, item_count, batch_size, maxlen):
     if model_type == 'E-UPMiM':
-        model = Model_E_UPMiM(user_count, item_count, args.embedding_dim, args.hidden_size, batch_size, args.num_interest, args.num_layer, maxlen)
+        model = Model_E_UPMiM(user_count, item_count, args.embedding_dim, args.hidden_size, batch_size, args.num_interest, args.num_layer, maxlen, device = args.device)
+    elif model_type == 'Comi_Rec':
+        model = Model_Comi_Rec(user_count, item_count, args.embedding_dim, args.hidden_size, batch_size, args.num_interest, args.num_layer, maxlen, device = args.device)
     else:
         print("Invalid model_type : %s", model_type)
         return
@@ -147,80 +140,88 @@ def train(
 ):
     exp_name = get_exp_name(dataset, model_type, batch_size, lr, maxlen, topN)
 
-    best_model_path = "../best_model/" + exp_name + '/'
-
-    gpu_options = tf.GPUOptions(allow_growth=True)
+    best_model_path = "../best_model/" + exp_name
 
     writer = SummaryWriter('../runs/' + exp_name)
 
+    train_data = DataIterator(train_file, batch_size, maxlen, train_flag=0)
+    
+    model = get_model(model_type, user_count, item_count, batch_size, maxlen).to(device = args.device)
 
-    with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
-        train_data = DataIterator(train_file, batch_size, maxlen, train_flag=0)
-        
+    print('training begin')
+    
+    optimizer = torch.optim.Adam(model.parameters(), lr = lr)
 
-        model = get_model(model_type, user_count, item_count, batch_size, maxlen)
+    # 打印可训练的参数量
+    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print(f"number of trainable params: {trainable_params}")
 
-        sess.run(tf.global_variables_initializer())
-        sess.run(tf.local_variables_initializer())
+    start_time = time.time()
+    iter = 0
+    try:
+        loss_sum = 0.0
+        trials = 0
 
-        print('training begin')
+        for src, tgt in train_data:
+            model.train()
+            model.to(device = args.device)
+            # user_id / user_age / user_gender / occupation / target_item_id / history_items_id / masks
+            nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask = prepare_train_data(src, tgt)
+            optimizer.zero_grad()
+            # 前向传播
+            _, loss = model("train", nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask)
 
-        start_time = time.time()
-        iter = 0
-        try:
-            loss_sum = 0.0
-            trials = 0
+            # 反向传播和优化
+            loss.backward()
+            optimizer.step()
 
-            for src, tgt in train_data:
-                # user_id / user_age / user_gender / occupation / target_item_id / history_items_id / masks
-                data_iter = prepare_train_data(src, tgt)
-                loss = model.train(sess, list(data_iter) + [float(lr)])
+            loss_sum += loss
+            iter += 1
+            if iter % test_iter == 0:
+                metrics = evaluate_full(args.num_interest, valid_file, model, best_model_path, batch_size, maxlen, train_flag = 1)
+                log_str = 'iter: %d, train loss: %.4f' % (iter, loss_sum / test_iter)
+                if metrics != {}:
+                    log_str += ', ' + ', '.join(
+                        ['valid ' + key + ': %.6f' % value for key, value in metrics.items()])
+                print(exp_name)
+                print(log_str)
 
-                loss_sum += loss
-                iter += 1
-                if iter % test_iter == 0:
-                    metrics = evaluate_full(sess, args.num_interest, valid_file, model, best_model_path, batch_size, maxlen, train_flag = 1)
-                    log_str = 'iter: %d, train loss: %.4f' % (iter, loss_sum / test_iter)
-                    if metrics != {}:
-                        log_str += ', ' + ', '.join(
-                            ['valid ' + key + ': %.6f' % value for key, value in metrics.items()])
-                    print(exp_name)
-                    print(log_str)
+                writer.add_scalar('train/loss', loss_sum / test_iter, iter)
+                if metrics != {}:
+                    for key, value in metrics.items():
+                        writer.add_scalar('eval/' + key, value, iter)
 
-                    writer.add_scalar('train/loss', loss_sum / test_iter, iter)
-                    if metrics != {}:
-                        for key, value in metrics.items():
-                            writer.add_scalar('eval/' + key, value, iter)
+                if 'recall' in metrics:
+                    recall = metrics['recall']
+                    global best_metric
+                    if recall > best_metric:
+                        best_metric = recall
+                        if not os.path.exists(best_model_path):
+                            os.makedirs(best_model_path, exist_ok = True)
+                        torch.save(model.cpu().state_dict(), f"{best_model_path}/model.pt")
+                        trials = 0
+                    else:
+                        trials += 1
+                        if trials > patience:
+                            print('early stopping...')
+                            break
 
-                    if 'recall' in metrics:
-                        recall = metrics['recall']
-                        global best_metric
-                        if recall > best_metric:
-                            best_metric = recall
-                            model.save(sess, best_model_path)
-                            trials = 0
-                        else:
-                            trials += 1
-                            if trials > patience:
-                                print('early stopping...')
-                                break
+                loss_sum = 0.0
+                test_time = time.time()
+                print("time interval: %.4f min" % ((test_time - start_time) / 60.0))
 
-                    loss_sum = 0.0
-                    test_time = time.time()
-                    print("time interval: %.4f min" % ((test_time - start_time) / 60.0))
+            if iter >= max_iter * 1000:
+                break
+    except KeyboardInterrupt:
+        print('-' * 89)
+        print('Exiting from training early')
 
-                if iter >= max_iter * 1000:
-                    break
-        except KeyboardInterrupt:
-            print('-' * 89)
-            print('Exiting from training early')
+    model.load_state_dict(torch.load(f"{best_model_path}/model.pt"))
+    metrics = evaluate_full(args.num_interest, valid_file, model, best_model_path, batch_size, maxlen, train_flag = 1, save=False)
+    print(', '.join(['valid ' + key + ': %.6f' % value for key, value in metrics.items()]))
 
-        model.restore(sess, best_model_path)
-        metrics = evaluate_full(sess, args.num_interest, valid_file, model, best_model_path, batch_size, maxlen, train_flag = 1, save=False)
-        print(', '.join(['valid ' + key + ': %.6f' % value for key, value in metrics.items()]))
-
-        metrics = evaluate_full(sess, args.num_interest, test_file, model, best_model_path, batch_size, maxlen, train_flag = 2, save=False)
-        print(', '.join(['test ' + key + ': %.6f' % value for key, value in metrics.items()]))
+    metrics = evaluate_full(args.num_interest, test_file, model, best_model_path, batch_size, maxlen, train_flag = 2, save=False)
+    print(', '.join(['test ' + key + ': %.6f' % value for key, value in metrics.items()]))
 
 def test(
         test_file,
@@ -234,14 +235,11 @@ def test(
         topN = 10
 ):
     exp_name = get_exp_name(dataset, model_type, batch_size, lr, maxlen, topN, save=False)
-    best_model_path = "../best_model/" + exp_name + '/'
-    gpu_options = tf.GPUOptions(allow_growth=True)
-    model = get_model(model_type, user_count, item_count, batch_size, maxlen)
-
-    with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
-        model.restore(sess, best_model_path)
-        metrics = evaluate_full(sess, args.num_interest, test_file, model, best_model_path, batch_size, maxlen, train_flag = 2, save=False, coef=args.coef)
-        print(', '.join(['test ' + key + ': %.6f' % value for key, value in metrics.items()]))
+    best_model_path = "../best_model/" + exp_name + '/model.pt'
+    model = get_model(model_type, user_count, item_count, batch_size, maxlen).to(device = args.device)
+    model.load_state_dict(torch.load(best_model_path))
+    metrics = evaluate_full(args.num_interest, test_file, model, best_model_path, batch_size, maxlen, train_flag = 2, save=False, coef=args.coef)
+    print(', '.join(['test ' + key + ': %.6f' % value for key, value in metrics.items()]))
 
 def output(
         user_count,
@@ -250,24 +248,25 @@ def output(
         batch_size = 128,
         maxlen = 10,
         model_type = 'E-UPMiM',
-        lr = 0.001
+        lr = 0.001,
+        topN = 10
 ):
-    exp_name = get_exp_name(dataset, model_type, batch_size, lr, maxlen, save=False)
-    best_model_path = "../best_model/" + exp_name + '/'
-    gpu_options = tf.GPUOptions(allow_growth=True)
-    model = get_model(dataset, model_type, user_count, item_count, batch_size, maxlen)
-
-    with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
-        model.restore(sess, best_model_path)
-        item_embs = model.output_item(sess)
-        np.save('../output/' + exp_name + '_emb.npy', item_embs)
+    exp_name = get_exp_name(dataset, model_type, batch_size, lr, maxlen, topN, save=False)
+    best_model_path = "../best_model/" + exp_name + '/model.pt'
+    model = get_model(model_type, user_count, item_count, batch_size, maxlen).to(device = args.device)
+    model.load_state_dict(torch.load(best_model_path))
+    item_embs = model.output_item()
+    if not os.path.exists('../output/'):
+        os.makedirs('../output/', exist_ok = True)
+    np.save('../output/' + exp_name + '_emb.npy', item_embs.detach().cpu().numpy())
+    print("item embedding has been saved!")
 
 
 if __name__ == '__main__':
     args = parser.parse_args()
     SEED = args.random_seed
 
-    tf.set_random_seed(SEED)
+    torch.manual_seed(SEED)
     np.random.seed(SEED)
     random.seed(SEED)
 
