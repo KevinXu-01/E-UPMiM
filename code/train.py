@@ -23,7 +23,7 @@ parser.add_argument('--embedding_dim', type = int, default = 32)
 parser.add_argument('--hidden_size', type = int, default = 32)
 parser.add_argument('--num_interest', type = int, default = 3)
 parser.add_argument('--num_layer', type = int, default = 4)
-parser.add_argument('--model_type', type = str, default = 'E-UPMiM', help = 'E-UPMiM | ComiRec | ...')
+parser.add_argument('--model_type', type = str, default = 'E-UPMiM', help = 'E-UPMiM | Comi_Rec | ..')
 parser.add_argument('--learning_rate', type = float, default = 0.001, help = '')
 parser.add_argument('--max_iter', type = int, default = 500, help = '(k)')
 parser.add_argument('--patience', type = int, default = 20)
@@ -60,14 +60,14 @@ def evaluate_full(num_interest, valid_file, model, model_path, batch_size, maxle
         nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask = prepare_test_data(src, tgt)
 
         user_embs, _ = model("test", nick_id, user_age, user_gender, user_occup, hist_item, hist_item, hist_mask)
-        # user_embs = model.output_user(nick_id) # for Comi_Rec
+        # user_embs = model.output_user(nick_id)
         user_index = 0
         I = []
         while user_index < batch_size:
             preds = []
             for i in range(num_interest):
                 _user_embs = user_embs[user_index:user_index+1, i, :]
-                # _user_embs = user_embs[user_index:user_index+1, :] for Comi_Rec
+                # _user_embs = user_embs[user_index:user_index+1, :]
                 d, index = find_topN_items(_user_embs.detach().cpu().numpy(), item_embs.detach().cpu().numpy(), topN)
                 preds.append(index)
             user_index += 1
@@ -199,6 +199,7 @@ def train(
                         if not os.path.exists(best_model_path):
                             os.makedirs(best_model_path, exist_ok = True)
                         torch.save(model.cpu().state_dict(), f"{best_model_path}/model.pt")
+                        # model.save(best_model_path)
                         trials = 0
                     else:
                         trials += 1

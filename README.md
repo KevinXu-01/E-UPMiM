@@ -19,6 +19,8 @@ We have released the processed MovieLens-1M dataset and the checkpoints; for the
 # Train
 ```
 python train.py --mode train --dataset movieles --learning_rate 0.001 --topN 10 --model_type E-UPMiM --device cuda:0
+
+python train.py --embedding_dim 64 --hidden_size 64 --num_interest 4 --model_type Comi_Rec --device cuda:0 --learning_rate 0.001 --dataset movieles --mode train
 ```
 Please note that during thesis writing, we have tested more network structures (with better results), and updated the codes accordingly. So it might be different from the original paper. For example, we delete the social networking and time-aware re-ranking as they contribute little to the performances, and replace the original CapsNet with an auto-regressive multi-interest extraction module (less parameters, better results).
 

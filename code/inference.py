@@ -11,7 +11,7 @@ def get_model(model_type, user_count, item_count, batch_size, maxlen, device):
     if model_type == 'E-UPMiM':
         model = Model_E_UPMiM(user_count, item_count, 32, 32, batch_size, 3, 4, maxlen, device = device)
     elif model_type == 'Comi_Rec':
-        model = Model_Comi_Rec(user_count, item_count, 32, 32, batch_size, 3, 4, maxlen, device = device)
+        model = Model_Comi_Rec(user_count, item_count, 64, 64, batch_size, 4, 4, maxlen, device = device)
     else:
         print("Invalid model_type : %s", model_type)
         return
@@ -36,7 +36,7 @@ def inference(batch_size, num_interest, test_data, model, topN = 10):
             preds = []
             for i in range(num_interest):
                 _user_embs = user_embs[user_index:user_index+1, i, :]
-                # _user_embs = user_embs[user_index:user_index+1, :] for Comi_Rec
+                # _user_embs = user_embs[user_index:user_index+1, :] # for Comi_Rec
                 d, index = find_topN_items(_user_embs.detach().cpu().numpy(), item_embs.detach().cpu().numpy(), topN)
                 preds.append(index)
             print(f"user id: {nick_id[user_index]}, history item: {hist_item[user_index]}, GT: {item_id[user_index]}, predictions: {preds}")
