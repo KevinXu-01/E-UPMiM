@@ -1,4 +1,4 @@
-# model file
+# model file: E-UPMiM
 
 import torch
 from torch import nn

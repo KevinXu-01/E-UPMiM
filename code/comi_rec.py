@@ -1,4 +1,4 @@
-# model file: a base model class for embedding, and our e-upmim model that inherits from the base model
+# model file: Comi_Rec
 
 import torch
 from torch import nn
