@@ -32,6 +32,7 @@ class Model_Comi_Rec(nn.Module):
         nn.init.xavier_normal_(self.user_embeddings_var.weight)
 
         self.capsule_network = CapsuleNetwork(self.hidden_size, self.seq_len, bilinear_type=2, num_interest=self.num_interest, hard_readout=hard_readout, relu_layer=relu_layer)
+        
 
 
     def build_sampled_softmax_loss(self, item_id, user_emb):
