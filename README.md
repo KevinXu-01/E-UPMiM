@@ -24,7 +24,7 @@ python train.py --embedding_dim 64 --hidden_size 64 --num_interest 4 --model_typ
 ```
 Please note that during thesis writing, we have tested more network structures (with better results), and updated the codes accordingly. So it might be different from the original paper. For example, we delete the social networking and time-aware re-ranking as they contribute little to the performances, and replace the original CapsNet with an auto-regressive multi-interest extraction module (less parameters, better results).
 
-For readers' convenience, we also provide a PyTorch implementation of ComiRec.
+For readers' convenience, we also provide a PyTorch implementation of ComiRec, with the same hyper-parameter settings as **[ComiRec](https://github.com/THUDM/ComiRec)**.
 
 # Inference
 ```

@@ -29,14 +29,12 @@ def inference(batch_size, num_interest, test_data, model, topN = 10):
     for src, tgt in test_data:
         nick_id, user_age, user_gender, user_occup, item_id, hist_item, hist_mask = prepare_test_data(src, tgt)
         user_embs, _ = model("test", nick_id, user_age, user_gender, user_occup, hist_item, hist_item, hist_mask)
-        # user_embs = model.output_user(nick_id) # for Comi_Rec
         user_index = 0
         I = []
         while user_index < batch_size:
             preds = []
             for i in range(num_interest):
                 _user_embs = user_embs[user_index:user_index+1, i, :]
-                # _user_embs = user_embs[user_index:user_index+1, :] # for Comi_Rec
                 d, index = find_topN_items(_user_embs.detach().cpu().numpy(), item_embs.detach().cpu().numpy(), topN)
                 preds.append(index)
             print(f"user id: {nick_id[user_index]}, history item: {hist_item[user_index]}, GT: {item_id[user_index]}, predictions: {preds}")
@@ -58,7 +56,7 @@ if __name__ == '__main__':
     n_uid = 6040
     n_mid = 3417
     batch_size = 128
-    max_len = 10
+    max_len = 50
     num_interest = 3
     model = get_model('E-UPMiM', n_uid, n_mid, batch_size, max_len, "cpu")
     model.load_state_dict(torch.load("../best_model/movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10/model.pt"))

@@ -1,12 +1,10 @@
 # model file
 
-import os
 import torch
 from torch import nn
 import torch.nn.functional as F
 from utils import hard_attention, UserProfileInterestAttention, GCNEmbedding, normalize_adj_tensor
 import numpy as np
-from torch.distributions import Categorical
 
 class Model_E_UPMiM(nn.Module):
     def __init__(self, n_user, n_mid, embedding_dim, hidden_size, batch_size, num_interest, num_layer, seq_len=10, hard_readout=True, relu_layer=False, device="cuda:0"):
@@ -63,6 +61,7 @@ class Model_E_UPMiM(nn.Module):
         adj_l1_loss = 1e-5 * self.adj_l1
         
         # sparse softmax cross entropy with logits loss
+
         neg_sampling_loss = torch.mean(F.cross_entropy(input = user_emb, target = item_emb))
         
         loss = l2_loss + adj_l1_loss + neg_sampling_loss
@@ -135,24 +134,28 @@ class Model_E_UPMiM(nn.Module):
         # GCN layer
         all_embeddings = self.gcn_embedding(adj, self.item_his_eb)
         interest_list = []
+        # readout_list = []
         user_profile = torch.unsqueeze(user_profile, dim=1).repeat(1, self.num_interest, 1)
         for l in range(self.num_layer - 1):
             interest = self.multi_interest_network(all_embeddings[l], hist_mask) # [batch_size, num_interest, embedding_dim]
             # interest = self.capsule_network(all_embeddings[l], self.item_eb, hist_mask)
             interest_list.append(interest)
+            # readout_list.append(readout)
         interest_list_stack = torch.stack(interest_list)
+        # readout_list_stack = torch.stack(readout_list)
         mean_interest = torch.mean(interest_list_stack, dim = 0) # meaning_pooling
+        # mean_readout = torch.mean(readout_list_stack, dim = 0)
         user_attended_profile = self._user_profile_interest_attention(mean_interest, user_profile)
         self.user_eb = torch.concat([user_attended_profile, mean_interest], dim = -1)
 
         for i, units in enumerate(self.linear_units):
+            # activation_fn = (tf.nn.relu if i < len(linear_units) - 1 else lambda x: x)
             self.user_eb = self.fc_layers[i](self.user_eb)
             if i < len(self.linear_units) - 1:
                 self.user_eb = torch.relu(self.user_eb)
                 self.dropout(self.user_eb)
             else:
                 pass
-
         if flag == "train":
             self.item_pos_and_neg = torch.cat([torch.unsqueeze(self.item_eb, 1), self.neg_item_emb], dim=1)
             self.readout = hard_attention(self.user_eb, self.item_pos_and_neg)
@@ -169,6 +172,10 @@ class Model_E_UPMiM(nn.Module):
     def output_item(self):
         item_embs = self.mid_embeddings_var.weight
         return item_embs
+
+    def output_user(self, user_id):
+        user_embs = self.user_embeddings_var.weight[user_id]
+        return user_embs
 
 def get_shape(inputs):
     dynamic_shape = list(inputs.shape)
@@ -369,4 +376,3 @@ class AutoregressiveMultiInterest(nn.Module):
             # 存储时增加维度
             V.append(v_k.unsqueeze(1))  # [batch, 1, hidden_dim]
         return torch.cat(V, dim=1)  # [batch, K, hidden_dim]
-
