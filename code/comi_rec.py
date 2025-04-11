@@ -36,7 +36,7 @@ class Model_Comi_Rec(nn.Module):
         self.user_embeddings_var = nn.Embedding(self.n_uid, self.embedding_dim)
         nn.init.xavier_normal_(self.user_embeddings_var.weight)
 
-        self.capsule_network = CapsuleNetwork(self.hidden_size, self.seq_len, bilinear_type=0, num_interest=self.num_interest, hard_readout=hard_readout, relu_layer=relu_layer)
+        self.capsule_network = CapsuleNetwork(self.hidden_size, self.seq_len, bilinear_type=2, num_interest=self.num_interest, hard_readout=hard_readout, relu_layer=relu_layer)
         # self.multi_interest_network = AutoregressiveMultiInterest(input_dim=self.embedding_dim, hidden_dim=self.hidden_size, num_interests=self.num_interest)
         
 
