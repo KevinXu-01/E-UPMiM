@@ -61,7 +61,6 @@ class Model_E_UPMiM(nn.Module):
         adj_l1_loss = 1e-5 * self.adj_l1
         
         # sparse softmax cross entropy with logits loss
-
         neg_sampling_loss = torch.mean(F.cross_entropy(input = user_emb, target = item_emb))
         
         loss = l2_loss + adj_l1_loss + neg_sampling_loss
@@ -86,8 +85,6 @@ class Model_E_UPMiM(nn.Module):
         mask.scatter_(1, exclude, False)
         
         # 为每个用户采样负样本
-        # 由于每个用户的候选数量不同，我们需要使用torch.multinomial
-        # 首先为所有候选item生成权重
         weights = mask.float()
         
         # 采样
@@ -134,22 +131,17 @@ class Model_E_UPMiM(nn.Module):
         # GCN layer
         all_embeddings = self.gcn_embedding(adj, self.item_his_eb)
         interest_list = []
-        # readout_list = []
         user_profile = torch.unsqueeze(user_profile, dim=1).repeat(1, self.num_interest, 1)
         for l in range(self.num_layer - 1):
             interest = self.multi_interest_network(all_embeddings[l], hist_mask) # [batch_size, num_interest, embedding_dim]
             # interest = self.capsule_network(all_embeddings[l], self.item_eb, hist_mask)
             interest_list.append(interest)
-            # readout_list.append(readout)
         interest_list_stack = torch.stack(interest_list)
-        # readout_list_stack = torch.stack(readout_list)
         mean_interest = torch.mean(interest_list_stack, dim = 0) # meaning_pooling
-        # mean_readout = torch.mean(readout_list_stack, dim = 0)
         user_attended_profile = self._user_profile_interest_attention(mean_interest, user_profile)
         self.user_eb = torch.concat([user_attended_profile, mean_interest], dim = -1)
 
         for i, units in enumerate(self.linear_units):
-            # activation_fn = (tf.nn.relu if i < len(linear_units) - 1 else lambda x: x)
             self.user_eb = self.fc_layers[i](self.user_eb)
             if i < len(self.linear_units) - 1:
                 self.user_eb = torch.relu(self.user_eb)

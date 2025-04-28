@@ -66,8 +66,10 @@ def evaluate_full(num_interest, valid_file, model, model_path, batch_size, maxle
         while user_index < batch_size:
             preds = []
             for i in range(num_interest):
-                _user_embs = user_embs[user_index:user_index+1, i, :]
-                # _user_embs = user_embs[user_index:user_index+1, :]
+                if len(user_embs.shape) == 3:
+                    _user_embs = user_embs[user_index:user_index+1, i, :]
+                else:
+                    _user_embs = user_embs[user_index:user_index+1, :]
                 d, index = find_topN_items(_user_embs.detach().cpu().numpy(), item_embs.detach().cpu().numpy(), topN)
                 preds.append(index)
             user_index += 1
