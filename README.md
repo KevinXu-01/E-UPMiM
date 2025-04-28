@@ -1,6 +1,9 @@
 # E-UPMiM
 Official PyTorch Implementation for Our Paper "Beyond Preferences: Enriching User Profiles for Effective E-commerce Recommendations" (ISCAS 2025)
 
+# Update History
+28/04/2025: We updated the GCN following LightGCN, with less parameters and better results, special thanks to Prof. He!
+
 # Requirements
 ```
 Python = 3.9.16
@@ -32,7 +35,7 @@ python inference.py
 ```
 
 # Acknowledgement
-The structure of our code is based on **[ComiRec](https://github.com/THUDM/ComiRec)** and **[UMI](https://github.com/WHUIR/UMI)**. We greatly thank their incredible efforts!
+The structure of our code is based on **[ComiRec](https://github.com/THUDM/ComiRec)** and **[UMI](https://github.com/WHUIR/UMI)**. The idea of simplifying GCN is from **[LightGCN}(https://github.com/kuandeng/LightGCN)**. We greatly thank their incredible efforts! 
 
 # Citation
 If you find our work useful for your research and applications, please kindly consider citing our work:
