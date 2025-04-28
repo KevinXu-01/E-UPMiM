@@ -37,7 +37,7 @@ By default, the "test" mode will run evaluation on the test set.
 
 # Output
 ```
-python train.py --mode output --dataset movieles --topN 10 --model_type E-UPMiM
+python train.py --mode output --dataset movieles --model_type E-UPMiM
 ```
 The "output" mode will save the item embeddings as item vector database for online service.
 
