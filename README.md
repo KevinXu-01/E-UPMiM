@@ -29,6 +29,18 @@ Please note that during thesis writing, we have tested more network structures f
 
 For readers' convenience, we also provide a PyTorch implementation of ComiRec, with the same hyper-parameter settings as **[ComiRec](https://github.com/THUDM/ComiRec)**.
 
+# Test
+```
+python train.py --mode test --dataset movieles --topN 10 --model_type E-UPMiM
+```
+By default, the "test" mode will run evaluation on the test set.
+
+# Output
+```
+python train.py --mode output --dataset movieles --topN 10 --model_type E-UPMiM
+```
+The "output" mode will save the item embeddings as item vector database for online service.
+
 # Inference
 ```
 python inference.py
