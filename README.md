@@ -2,7 +2,7 @@
 Official PyTorch Implementation for Our Paper "Beyond Preferences: Enriching User Profiles for Effective E-commerce Recommendations" (ISCAS 2025)
 
 # Update History
-28/04/2025: We updated the GCN following LightGCN, with less parameters and better results, special thanks to Prof. He!
+28/04/2025: We updated the GCN following LightGCN, with less parameters and better results.
 
 # Requirements
 ```
