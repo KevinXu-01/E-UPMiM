@@ -21,21 +21,22 @@ class GCNEmbedding(nn.Module):
         self.se_num = se_num
         self.batch_size = batch_size
         self.seq_len = seq_len
-        self.layer_size = layer_size
-        self.weights_size_list = [embedding_dim] + layer_size
-        self.all_weights = nn.ParameterDict()
+        # self.layer_size = layer_size
+        # self.weights_size_list = [embedding_dim] + layer_size
+        # self.all_weights = nn.ParameterDict()
         
-        for lay in range(num_layer):
-            self.all_weights['W_gc%d' % lay] = nn.Parameter(torch.randn(self.weights_size_list[lay], self.weights_size_list[lay+1]) * 0.01)
-            self.all_weights['B_gc%d' % lay] = nn.Parameter(torch.randn(1, self.weights_size_list[lay+1]) * 0.01)
+        # for lay in range(num_layer):
+        #     self.all_weights['W_gc%d' % lay] = nn.Parameter(torch.randn(self.weights_size_list[lay], self.weights_size_list[lay+1]) * 0.01)
+        #     self.all_weights['B_gc%d' % lay] = nn.Parameter(torch.randn(1, self.weights_size_list[lay+1]) * 0.01)
 
     def forward(self, A, x):
         A = A.to(dtype = torch.float32)
         # all_embeddings = [x[:, self.se_num:self.se_num+self.seq_len, :self.embedding_dim]]
         all_embeddings = []
+        embeddings = x
         for k in range(self.num_layer):
-            embeddings = torch.matmul(A, x)
-            embeddings = F.leaky_relu(torch.matmul(embeddings, self.all_weights['W_gc%d' % k]) + self.all_weights['B_gc%d' % k])
+            embeddings = torch.matmul(A, embeddings)
+            # embeddings = F.leaky_relu(torch.matmul(embeddings, self.all_weights['W_gc%d' % k]) + self.all_weights['B_gc%d' % k])
             all_embeddings.append(embeddings[:, self.se_num:self.se_num+self.seq_len, :self.embedding_dim])
         return all_embeddings
 
