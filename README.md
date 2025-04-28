@@ -25,7 +25,7 @@ python train.py --mode train --dataset movieles --learning_rate 0.001 --topN 10 
 
 python train.py --embedding_dim 64 --hidden_size 64 --num_interest 4 --model_type Comi_Rec --device cuda:0 --learning_rate 0.001 --dataset movieles --mode train
 ```
-Please note that during thesis writing, we have tested more network structures (with better results), and updated the codes accordingly. So it might be different from the original paper. For example, we delete the social networking and time-aware re-ranking as they contribute little to the performances, and replace the original CapsNet with an auto-regressive multi-interest extraction module (less parameters, better results).
+Please note that during thesis writing, we have tested more network structures for better results, and updated the codes accordingly. So it might be different from the original paper. For example, we delete the social networking and time-aware re-ranking as they contribute little to the performances, and replace the original CapsNet with an auto-regressive multi-interest extraction module (less parameters, better results).
 
 For readers' convenience, we also provide a PyTorch implementation of ComiRec, with the same hyper-parameter settings as **[ComiRec](https://github.com/THUDM/ComiRec)**.
 
@@ -35,7 +35,7 @@ python inference.py
 ```
 
 # Acknowledgement
-The structure of our code is based on **[ComiRec](https://github.com/THUDM/ComiRec)** and **[UMI](https://github.com/WHUIR/UMI)**. The idea of simplifying GCN is from **[LightGCN}(https://github.com/kuandeng/LightGCN)**. We greatly thank their incredible efforts! 
+The structure of our code is based on **[ComiRec](https://github.com/THUDM/ComiRec)** and **[UMI](https://github.com/WHUIR/UMI)**. The idea of simplifying GCN is from **[LightGCN](https://github.com/kuandeng/LightGCN)**. We greatly thank their incredible efforts! 
 
 # Citation
 If you find our work useful for your research and applications, please kindly consider citing our work:
