@@ -1,263 +1,633 @@
 training begin
-number of trainable params: 370740
-total: 512
+number of trainable params: 367572
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 50, train loss: 2.4117, valid hitrate: 0.437500, valid recall: 0.041719, valid precision: 0.093555, valid ndcg: 0.226257
-time interval: 1.4937 min
-total: 512
+iter: 50, train loss: 2.3467, valid hitrate: 0.402344, valid recall: 0.056211, valid precision: 0.117383, valid ndcg: 0.235024
+time interval: 0.1217 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 100, train loss: 2.0695, valid hitrate: 0.453125, valid recall: 0.043675, valid precision: 0.091602, valid ndcg: 0.246652
-time interval: 2.5993 min
-total: 512
+iter: 100, train loss: 2.0045, valid hitrate: 0.394531, valid recall: 0.056365, valid precision: 0.112695, valid ndcg: 0.215033
+time interval: 0.2483 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 150, train loss: 1.8490, valid hitrate: 0.394531, valid recall: 0.035932, valid precision: 0.086719, valid ndcg: 0.218491
-time interval: 4.1239 min
-total: 512
+iter: 150, train loss: 1.7858, valid hitrate: 0.359375, valid recall: 0.057671, valid precision: 0.107031, valid ndcg: 0.205015
+time interval: 0.3735 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 200, train loss: 1.7656, valid hitrate: 0.419922, valid recall: 0.036928, valid precision: 0.082031, valid ndcg: 0.226859
-time interval: 5.7135 min
-total: 512
+iter: 200, train loss: 1.6906, valid hitrate: 0.384766, valid recall: 0.058233, valid precision: 0.110547, valid ndcg: 0.212608
+time interval: 0.4991 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 250, train loss: 1.7389, valid hitrate: 0.425781, valid recall: 0.038758, valid precision: 0.089648, valid ndcg: 0.225962
-time interval: 7.1169 min
-total: 512
+iter: 250, train loss: 1.6747, valid hitrate: 0.433594, valid recall: 0.054384, valid precision: 0.108984, valid ndcg: 0.248279
+time interval: 0.6252 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 300, train loss: 1.7153, valid hitrate: 0.468750, valid recall: 0.043646, valid precision: 0.092383, valid ndcg: 0.248093
-time interval: 8.5415 min
-total: 512
+iter: 300, train loss: 1.6501, valid hitrate: 0.447266, valid recall: 0.057962, valid precision: 0.113477, valid ndcg: 0.264493
+time interval: 0.7466 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 350, train loss: 1.7057, valid hitrate: 0.431641, valid recall: 0.035386, valid precision: 0.083984, valid ndcg: 0.237576
-time interval: 10.1378 min
-total: 512
+iter: 350, train loss: 1.6473, valid hitrate: 0.519531, valid recall: 0.064945, valid precision: 0.124023, valid ndcg: 0.285363
+time interval: 0.8796 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 400, train loss: 1.7003, valid hitrate: 0.476562, valid recall: 0.039452, valid precision: 0.101563, valid ndcg: 0.256156
-time interval: 11.5965 min
-total: 512
+iter: 400, train loss: 1.6439, valid hitrate: 0.470703, valid recall: 0.064415, valid precision: 0.116016, valid ndcg: 0.269016
+time interval: 1.0152 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 450, train loss: 1.7069, valid hitrate: 0.501953, valid recall: 0.038450, valid precision: 0.097266, valid ndcg: 0.266591
-time interval: 13.4060 min
-total: 512
+iter: 450, train loss: 1.6555, valid hitrate: 0.453125, valid recall: 0.054106, valid precision: 0.112695, valid ndcg: 0.262318
+time interval: 1.1420 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 500, train loss: 1.6764, valid hitrate: 0.500000, valid recall: 0.038207, valid precision: 0.103125, valid ndcg: 0.286305
-time interval: 15.0273 min
-total: 512
+iter: 500, train loss: 1.6211, valid hitrate: 0.505859, valid recall: 0.059679, valid precision: 0.123242, valid ndcg: 0.284556
+time interval: 1.2690 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 550, train loss: 1.6683, valid hitrate: 0.505859, valid recall: 0.038887, valid precision: 0.102148, valid ndcg: 0.265974
-time interval: 16.3977 min
-total: 512
+iter: 550, train loss: 1.6242, valid hitrate: 0.515625, valid recall: 0.054468, valid precision: 0.120117, valid ndcg: 0.288025
+time interval: 1.3969 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 600, train loss: 1.6538, valid hitrate: 0.511719, valid recall: 0.040958, valid precision: 0.109180, valid ndcg: 0.278622
-time interval: 17.6933 min
-total: 512
+iter: 600, train loss: 1.6109, valid hitrate: 0.505859, valid recall: 0.055911, valid precision: 0.122656, valid ndcg: 0.289936
+time interval: 1.5219 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 650, train loss: 1.6467, valid hitrate: 0.533203, valid recall: 0.044989, valid precision: 0.109961, valid ndcg: 0.289320
-time interval: 19.0530 min
-total: 512
+iter: 650, train loss: 1.6063, valid hitrate: 0.503906, valid recall: 0.050991, valid precision: 0.115625, valid ndcg: 0.291114
+time interval: 1.6697 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 700, train loss: 1.6283, valid hitrate: 0.503906, valid recall: 0.045054, valid precision: 0.106641, valid ndcg: 0.290576
-time interval: 20.4765 min
-total: 512
+iter: 700, train loss: 1.5960, valid hitrate: 0.521484, valid recall: 0.060735, valid precision: 0.121875, valid ndcg: 0.294029
+time interval: 1.7975 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 750, train loss: 1.6290, valid hitrate: 0.505859, valid recall: 0.044562, valid precision: 0.106641, valid ndcg: 0.283584
-time interval: 21.9809 min
-total: 512
+iter: 750, train loss: 1.5846, valid hitrate: 0.527344, valid recall: 0.053262, valid precision: 0.113281, valid ndcg: 0.301045
+time interval: 1.9194 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 800, train loss: 1.6118, valid hitrate: 0.529297, valid recall: 0.045924, valid precision: 0.108398, valid ndcg: 0.290384
-time interval: 23.2171 min
-total: 512
+iter: 800, train loss: 1.5641, valid hitrate: 0.507812, valid recall: 0.057507, valid precision: 0.119141, valid ndcg: 0.283648
+time interval: 2.0416 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 850, train loss: 1.5972, valid hitrate: 0.529297, valid recall: 0.047802, valid precision: 0.109570, valid ndcg: 0.284605
-time interval: 24.4835 min
-total: 512
+iter: 850, train loss: 1.5426, valid hitrate: 0.535156, valid recall: 0.056358, valid precision: 0.120508, valid ndcg: 0.296008
+time interval: 2.1637 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 900, train loss: 1.5762, valid hitrate: 0.521484, valid recall: 0.039597, valid precision: 0.104688, valid ndcg: 0.295036
-time interval: 25.7459 min
-total: 512
+iter: 900, train loss: 1.5226, valid hitrate: 0.539062, valid recall: 0.056763, valid precision: 0.118750, valid ndcg: 0.292356
+time interval: 2.3080 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 950, train loss: 1.5510, valid hitrate: 0.515625, valid recall: 0.042685, valid precision: 0.106250, valid ndcg: 0.289490
-time interval: 27.1605 min
-total: 512
+iter: 950, train loss: 1.5226, valid hitrate: 0.539062, valid recall: 0.055618, valid precision: 0.115625, valid ndcg: 0.293416
+time interval: 2.4300 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1000, train loss: 1.5557, valid hitrate: 0.531250, valid recall: 0.046164, valid precision: 0.108789, valid ndcg: 0.294977
-time interval: 28.2577 min
-total: 512
+iter: 1000, train loss: 1.5103, valid hitrate: 0.539062, valid recall: 0.055325, valid precision: 0.121680, valid ndcg: 0.301969
+time interval: 2.5501 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1050, train loss: 1.5506, valid hitrate: 0.519531, valid recall: 0.044964, valid precision: 0.109180, valid ndcg: 0.283286
-time interval: 29.3600 min
-total: 512
+iter: 1050, train loss: 1.5032, valid hitrate: 0.546875, valid recall: 0.058381, valid precision: 0.123438, valid ndcg: 0.302924
+time interval: 2.6708 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1100, train loss: 1.5342, valid hitrate: 0.521484, valid recall: 0.042259, valid precision: 0.097461, valid ndcg: 0.278657
-time interval: 30.7575 min
-total: 512
+iter: 1100, train loss: 1.4900, valid hitrate: 0.564453, valid recall: 0.058540, valid precision: 0.123242, valid ndcg: 0.310196
+time interval: 2.7921 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1150, train loss: 1.5165, valid hitrate: 0.513672, valid recall: 0.047783, valid precision: 0.105469, valid ndcg: 0.285935
-time interval: 31.9468 min
-total: 512
+iter: 1150, train loss: 1.4727, valid hitrate: 0.570312, valid recall: 0.054412, valid precision: 0.122656, valid ndcg: 0.315349
+time interval: 2.9168 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1200, train loss: 1.5158, valid hitrate: 0.541016, valid recall: 0.049830, valid precision: 0.105664, valid ndcg: 0.291052
-time interval: 33.1220 min
-total: 512
+iter: 1200, train loss: 1.4430, valid hitrate: 0.558594, valid recall: 0.053107, valid precision: 0.125391, valid ndcg: 0.316009
+time interval: 3.0404 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1250, train loss: 1.5013, valid hitrate: 0.515625, valid recall: 0.046719, valid precision: 0.105273, valid ndcg: 0.280363
-time interval: 34.2658 min
-total: 512
+iter: 1250, train loss: 1.4412, valid hitrate: 0.544922, valid recall: 0.050388, valid precision: 0.124023, valid ndcg: 0.311471
+time interval: 3.1663 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1300, train loss: 1.4953, valid hitrate: 0.525391, valid recall: 0.044563, valid precision: 0.101758, valid ndcg: 0.271245
-time interval: 35.6007 min
-total: 512
+iter: 1300, train loss: 1.4244, valid hitrate: 0.550781, valid recall: 0.051055, valid precision: 0.121680, valid ndcg: 0.303374
+time interval: 3.2920 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1350, train loss: 1.4830, valid hitrate: 0.529297, valid recall: 0.041787, valid precision: 0.102539, valid ndcg: 0.278848
-time interval: 36.8461 min
-total: 512
+iter: 1350, train loss: 1.4349, valid hitrate: 0.595703, valid recall: 0.059166, valid precision: 0.138477, valid ndcg: 0.326666
+time interval: 3.4188 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1400, train loss: 1.4928, valid hitrate: 0.537109, valid recall: 0.047168, valid precision: 0.109766, valid ndcg: 0.304837
-time interval: 38.3786 min
-total: 512
+iter: 1400, train loss: 1.4253, valid hitrate: 0.582031, valid recall: 0.055241, valid precision: 0.132227, valid ndcg: 0.319890
+time interval: 3.5455 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1450, train loss: 1.4605, valid hitrate: 0.529297, valid recall: 0.046293, valid precision: 0.108398, valid ndcg: 0.294185
-time interval: 40.0436 min
-total: 512
+iter: 1450, train loss: 1.4016, valid hitrate: 0.576172, valid recall: 0.052659, valid precision: 0.128516, valid ndcg: 0.314744
+time interval: 3.6669 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1500, train loss: 1.4604, valid hitrate: 0.589844, valid recall: 0.053683, valid precision: 0.116016, valid ndcg: 0.322577
-time interval: 41.4099 min
-total: 512
+iter: 1500, train loss: 1.4144, valid hitrate: 0.589844, valid recall: 0.056736, valid precision: 0.133008, valid ndcg: 0.333505
+time interval: 3.7910 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1550, train loss: 1.4847, valid hitrate: 0.511719, valid recall: 0.051586, valid precision: 0.106055, valid ndcg: 0.280683
-time interval: 42.8794 min
-total: 512
+iter: 1550, train loss: 1.4040, valid hitrate: 0.609375, valid recall: 0.066584, valid precision: 0.143359, valid ndcg: 0.355559
+time interval: 3.9111 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1600, train loss: 1.4533, valid hitrate: 0.550781, valid recall: 0.052917, valid precision: 0.111328, valid ndcg: 0.304709
-time interval: 44.2653 min
-total: 512
+iter: 1600, train loss: 1.3875, valid hitrate: 0.603516, valid recall: 0.064044, valid precision: 0.136133, valid ndcg: 0.348462
+time interval: 4.0323 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1650, train loss: 1.4436, valid hitrate: 0.507812, valid recall: 0.044995, valid precision: 0.103906, valid ndcg: 0.277652
-time interval: 45.5052 min
-total: 512
+iter: 1650, train loss: 1.3593, valid hitrate: 0.601562, valid recall: 0.061401, valid precision: 0.141797, valid ndcg: 0.343025
+time interval: 4.1535 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1700, train loss: 1.4365, valid hitrate: 0.533203, valid recall: 0.042172, valid precision: 0.105273, valid ndcg: 0.272936
-time interval: 46.9006 min
-total: 512
+iter: 1700, train loss: 1.3652, valid hitrate: 0.611328, valid recall: 0.059997, valid precision: 0.138867, valid ndcg: 0.349487
+time interval: 4.2736 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1750, train loss: 1.4186, valid hitrate: 0.525391, valid recall: 0.044585, valid precision: 0.101758, valid ndcg: 0.281023
-time interval: 48.2294 min
-total: 512
+iter: 1750, train loss: 1.3563, valid hitrate: 0.589844, valid recall: 0.057553, valid precision: 0.135547, valid ndcg: 0.338987
+time interval: 4.3938 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1800, train loss: 1.4007, valid hitrate: 0.488281, valid recall: 0.041998, valid precision: 0.098438, valid ndcg: 0.270775
-time interval: 49.4886 min
-total: 512
+iter: 1800, train loss: 1.3573, valid hitrate: 0.591797, valid recall: 0.059864, valid precision: 0.140234, valid ndcg: 0.339002
+time interval: 4.5156 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1850, train loss: 1.3887, valid hitrate: 0.500000, valid recall: 0.042955, valid precision: 0.102930, valid ndcg: 0.271782
-time interval: 50.7668 min
-total: 512
+iter: 1850, train loss: 1.3324, valid hitrate: 0.578125, valid recall: 0.056768, valid precision: 0.135156, valid ndcg: 0.346142
+time interval: 4.6369 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1900, train loss: 1.3605, valid hitrate: 0.533203, valid recall: 0.045440, valid precision: 0.106250, valid ndcg: 0.284807
-time interval: 52.1110 min
-total: 512
+iter: 1900, train loss: 1.3190, valid hitrate: 0.609375, valid recall: 0.060074, valid precision: 0.143945, valid ndcg: 0.348289
+time interval: 4.7604 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 1950, train loss: 1.3605, valid hitrate: 0.535156, valid recall: 0.049928, valid precision: 0.114453, valid ndcg: 0.279827
-time interval: 53.3744 min
-total: 512
+iter: 1950, train loss: 1.3076, valid hitrate: 0.615234, valid recall: 0.063290, valid precision: 0.152734, valid ndcg: 0.353445
+time interval: 4.8824 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2000, train loss: 1.3916, valid hitrate: 0.523438, valid recall: 0.046758, valid precision: 0.106250, valid ndcg: 0.281530
-time interval: 54.6389 min
-total: 512
+iter: 2000, train loss: 1.3372, valid hitrate: 0.611328, valid recall: 0.060958, valid precision: 0.149414, valid ndcg: 0.359663
+time interval: 5.0052 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2050, train loss: 1.3769, valid hitrate: 0.513672, valid recall: 0.041878, valid precision: 0.099805, valid ndcg: 0.275317
-time interval: 55.9713 min
-total: 512
+iter: 2050, train loss: 1.2958, valid hitrate: 0.611328, valid recall: 0.062502, valid precision: 0.148242, valid ndcg: 0.354733
+time interval: 5.1350 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2100, train loss: 1.3632, valid hitrate: 0.531250, valid recall: 0.042350, valid precision: 0.097656, valid ndcg: 0.269866
-time interval: 57.0231 min
-total: 512
+iter: 2100, train loss: 1.2921, valid hitrate: 0.625000, valid recall: 0.062704, valid precision: 0.144141, valid ndcg: 0.354672
+time interval: 5.2601 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2150, train loss: 1.3496, valid hitrate: 0.492188, valid recall: 0.041844, valid precision: 0.091602, valid ndcg: 0.252238
-time interval: 58.0115 min
-total: 512
+iter: 2150, train loss: 1.3045, valid hitrate: 0.630859, valid recall: 0.064016, valid precision: 0.145703, valid ndcg: 0.358902
+time interval: 5.3871 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2200, train loss: 1.3493, valid hitrate: 0.496094, valid recall: 0.043451, valid precision: 0.096875, valid ndcg: 0.258737
-time interval: 59.2709 min
-total: 512
+iter: 2200, train loss: 1.2818, valid hitrate: 0.625000, valid recall: 0.063725, valid precision: 0.140430, valid ndcg: 0.341292
+time interval: 5.5158 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2250, train loss: 1.3487, valid hitrate: 0.511719, valid recall: 0.047320, valid precision: 0.103711, valid ndcg: 0.275612
-time interval: 60.5791 min
-total: 512
+iter: 2250, train loss: 1.2943, valid hitrate: 0.626953, valid recall: 0.065834, valid precision: 0.144922, valid ndcg: 0.364290
+time interval: 5.6369 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2300, train loss: 1.3077, valid hitrate: 0.494141, valid recall: 0.043158, valid precision: 0.097070, valid ndcg: 0.266131
-time interval: 61.6989 min
-total: 512
+iter: 2300, train loss: 1.2547, valid hitrate: 0.636719, valid recall: 0.063982, valid precision: 0.143555, valid ndcg: 0.344614
+time interval: 5.7626 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2350, train loss: 1.3127, valid hitrate: 0.490234, valid recall: 0.041356, valid precision: 0.095313, valid ndcg: 0.253824
-time interval: 62.5634 min
-total: 512
+iter: 2350, train loss: 1.2571, valid hitrate: 0.632812, valid recall: 0.064411, valid precision: 0.142773, valid ndcg: 0.357087
+time interval: 5.8891 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2400, train loss: 1.3085, valid hitrate: 0.488281, valid recall: 0.044519, valid precision: 0.097852, valid ndcg: 0.264866
-time interval: 63.9007 min
-total: 512
+iter: 2400, train loss: 1.2636, valid hitrate: 0.630859, valid recall: 0.064994, valid precision: 0.138086, valid ndcg: 0.348466
+time interval: 6.0099 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2450, train loss: 1.3039, valid hitrate: 0.501953, valid recall: 0.041534, valid precision: 0.102930, valid ndcg: 0.261833
-time interval: 65.3234 min
-total: 512
+iter: 2450, train loss: 1.2497, valid hitrate: 0.628906, valid recall: 0.067752, valid precision: 0.151953, valid ndcg: 0.354839
+time interval: 6.1368 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2500, train loss: 1.2878, valid hitrate: 0.521484, valid recall: 0.045560, valid precision: 0.103320, valid ndcg: 0.272642
-time interval: 66.7349 min
-total: 512
+iter: 2500, train loss: 1.2419, valid hitrate: 0.623047, valid recall: 0.069562, valid precision: 0.147266, valid ndcg: 0.355836
+time interval: 6.2621 min
+total: 604
 topN: 10
 movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
-iter: 2550, train loss: 1.3026, valid hitrate: 0.519531, valid recall: 0.047732, valid precision: 0.103516, valid ndcg: 0.277903
+iter: 2550, train loss: 1.2568, valid hitrate: 0.605469, valid recall: 0.065943, valid precision: 0.139063, valid ndcg: 0.346137
+time interval: 6.3842 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 2600, train loss: 1.2419, valid hitrate: 0.605469, valid recall: 0.061604, valid precision: 0.140039, valid ndcg: 0.352392
+time interval: 6.5046 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 2650, train loss: 1.2218, valid hitrate: 0.642578, valid recall: 0.070520, valid precision: 0.144336, valid ndcg: 0.373637
+time interval: 6.6261 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 2700, train loss: 1.2257, valid hitrate: 0.667969, valid recall: 0.073355, valid precision: 0.149023, valid ndcg: 0.378587
+time interval: 6.7464 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 2750, train loss: 1.2449, valid hitrate: 0.677734, valid recall: 0.077771, valid precision: 0.155664, valid ndcg: 0.380616
+time interval: 6.8685 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 2800, train loss: 1.2126, valid hitrate: 0.664062, valid recall: 0.077861, valid precision: 0.149609, valid ndcg: 0.380159
+time interval: 6.9899 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 2850, train loss: 1.1958, valid hitrate: 0.650391, valid recall: 0.073690, valid precision: 0.151758, valid ndcg: 0.374075
+time interval: 7.1109 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 2900, train loss: 1.1854, valid hitrate: 0.652344, valid recall: 0.075085, valid precision: 0.158008, valid ndcg: 0.383016
+time interval: 7.2331 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 2950, train loss: 1.1938, valid hitrate: 0.662109, valid recall: 0.074545, valid precision: 0.151367, valid ndcg: 0.366288
+time interval: 7.3546 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3000, train loss: 1.2174, valid hitrate: 0.679688, valid recall: 0.078158, valid precision: 0.157227, valid ndcg: 0.375397
+time interval: 7.4766 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3050, train loss: 1.1995, valid hitrate: 0.687500, valid recall: 0.076923, valid precision: 0.153711, valid ndcg: 0.389963
+time interval: 7.6049 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3100, train loss: 1.1754, valid hitrate: 0.654297, valid recall: 0.075249, valid precision: 0.147461, valid ndcg: 0.372115
+time interval: 7.7281 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3150, train loss: 1.1788, valid hitrate: 0.656250, valid recall: 0.073198, valid precision: 0.150000, valid ndcg: 0.372176
+time interval: 7.8558 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3200, train loss: 1.1457, valid hitrate: 0.687500, valid recall: 0.074770, valid precision: 0.152344, valid ndcg: 0.389519
+time interval: 7.9774 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3250, train loss: 1.1722, valid hitrate: 0.648438, valid recall: 0.075251, valid precision: 0.151367, valid ndcg: 0.361152
+time interval: 8.1067 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3300, train loss: 1.1602, valid hitrate: 0.693359, valid recall: 0.081083, valid precision: 0.159375, valid ndcg: 0.401005
+time interval: 8.2394 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3350, train loss: 1.1186, valid hitrate: 0.642578, valid recall: 0.076048, valid precision: 0.152148, valid ndcg: 0.374300
+time interval: 8.3659 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3400, train loss: 1.1261, valid hitrate: 0.666016, valid recall: 0.076643, valid precision: 0.153906, valid ndcg: 0.381695
+time interval: 8.4914 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3450, train loss: 1.1301, valid hitrate: 0.664062, valid recall: 0.079975, valid precision: 0.155664, valid ndcg: 0.382267
+time interval: 8.6179 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3500, train loss: 1.1167, valid hitrate: 0.683594, valid recall: 0.083237, valid precision: 0.163086, valid ndcg: 0.388863
+time interval: 8.7445 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3550, train loss: 1.1165, valid hitrate: 0.699219, valid recall: 0.085502, valid precision: 0.164453, valid ndcg: 0.410443
+time interval: 8.8654 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3600, train loss: 1.1007, valid hitrate: 0.691406, valid recall: 0.079947, valid precision: 0.155078, valid ndcg: 0.394380
+time interval: 8.9874 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3650, train loss: 1.1110, valid hitrate: 0.671875, valid recall: 0.084639, valid precision: 0.161133, valid ndcg: 0.395901
+time interval: 9.1166 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3700, train loss: 1.1092, valid hitrate: 0.707031, valid recall: 0.081964, valid precision: 0.160938, valid ndcg: 0.394775
+time interval: 9.2400 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3750, train loss: 1.1063, valid hitrate: 0.666016, valid recall: 0.079300, valid precision: 0.156445, valid ndcg: 0.380778
+time interval: 9.3682 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3800, train loss: 1.0913, valid hitrate: 0.699219, valid recall: 0.085137, valid precision: 0.159961, valid ndcg: 0.391474
+time interval: 9.4888 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3850, train loss: 1.0958, valid hitrate: 0.666016, valid recall: 0.083854, valid precision: 0.158984, valid ndcg: 0.384667
+time interval: 9.6093 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3900, train loss: 1.0609, valid hitrate: 0.683594, valid recall: 0.083622, valid precision: 0.159375, valid ndcg: 0.392444
+time interval: 9.7298 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 3950, train loss: 1.0534, valid hitrate: 0.681641, valid recall: 0.083208, valid precision: 0.161133, valid ndcg: 0.393965
+time interval: 9.8555 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4000, train loss: 1.0642, valid hitrate: 0.687500, valid recall: 0.087806, valid precision: 0.164648, valid ndcg: 0.393375
+time interval: 9.9778 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4050, train loss: 1.0607, valid hitrate: 0.705078, valid recall: 0.090643, valid precision: 0.177539, valid ndcg: 0.411119
+time interval: 10.0993 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4100, train loss: 1.0538, valid hitrate: 0.679688, valid recall: 0.085410, valid precision: 0.166406, valid ndcg: 0.403855
+time interval: 10.2200 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4150, train loss: 1.0559, valid hitrate: 0.699219, valid recall: 0.083257, valid precision: 0.165820, valid ndcg: 0.409156
+time interval: 10.3434 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4200, train loss: 1.0513, valid hitrate: 0.705078, valid recall: 0.084270, valid precision: 0.163672, valid ndcg: 0.403867
+time interval: 10.4643 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4250, train loss: 1.0518, valid hitrate: 0.693359, valid recall: 0.078756, valid precision: 0.161914, valid ndcg: 0.408173
+time interval: 10.5848 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4300, train loss: 1.0264, valid hitrate: 0.710938, valid recall: 0.089979, valid precision: 0.170703, valid ndcg: 0.408198
+time interval: 10.7055 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4350, train loss: 1.0287, valid hitrate: 0.714844, valid recall: 0.088844, valid precision: 0.172266, valid ndcg: 0.416070
+time interval: 10.8274 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4400, train loss: 1.0545, valid hitrate: 0.740234, valid recall: 0.091359, valid precision: 0.178125, valid ndcg: 0.429349
+time interval: 10.9498 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4450, train loss: 1.0410, valid hitrate: 0.736328, valid recall: 0.091806, valid precision: 0.182617, valid ndcg: 0.431858
+time interval: 11.0732 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4500, train loss: 1.0228, valid hitrate: 0.718750, valid recall: 0.089272, valid precision: 0.177148, valid ndcg: 0.432031
+time interval: 11.1929 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4550, train loss: 1.0255, valid hitrate: 0.724609, valid recall: 0.083857, valid precision: 0.172070, valid ndcg: 0.420835
+time interval: 11.3136 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4600, train loss: 1.0277, valid hitrate: 0.722656, valid recall: 0.093823, valid precision: 0.178711, valid ndcg: 0.419324
+time interval: 11.4358 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4650, train loss: 1.0215, valid hitrate: 0.720703, valid recall: 0.089329, valid precision: 0.173828, valid ndcg: 0.426249
+time interval: 11.5566 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4700, train loss: 1.0374, valid hitrate: 0.724609, valid recall: 0.090195, valid precision: 0.174609, valid ndcg: 0.425682
+time interval: 11.6773 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4750, train loss: 1.0122, valid hitrate: 0.714844, valid recall: 0.091363, valid precision: 0.175977, valid ndcg: 0.414858
+time interval: 11.8002 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4800, train loss: 1.0053, valid hitrate: 0.691406, valid recall: 0.087988, valid precision: 0.171484, valid ndcg: 0.401643
+time interval: 11.9214 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4850, train loss: 1.0331, valid hitrate: 0.722656, valid recall: 0.091315, valid precision: 0.178125, valid ndcg: 0.423037
+time interval: 12.0426 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4900, train loss: 0.9987, valid hitrate: 0.738281, valid recall: 0.096263, valid precision: 0.181836, valid ndcg: 0.422113
+time interval: 12.1648 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 4950, train loss: 0.9983, valid hitrate: 0.712891, valid recall: 0.094311, valid precision: 0.178906, valid ndcg: 0.419479
+time interval: 12.2850 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5000, train loss: 0.9986, valid hitrate: 0.720703, valid recall: 0.086242, valid precision: 0.173828, valid ndcg: 0.416217
+time interval: 12.4081 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5050, train loss: 1.0021, valid hitrate: 0.726562, valid recall: 0.095353, valid precision: 0.181836, valid ndcg: 0.420635
+time interval: 12.5312 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5100, train loss: 0.9708, valid hitrate: 0.736328, valid recall: 0.092604, valid precision: 0.180469, valid ndcg: 0.420661
+time interval: 12.6518 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5150, train loss: 1.0148, valid hitrate: 0.744141, valid recall: 0.096242, valid precision: 0.181250, valid ndcg: 0.438636
+time interval: 12.7731 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5200, train loss: 0.9941, valid hitrate: 0.724609, valid recall: 0.094285, valid precision: 0.184961, valid ndcg: 0.434193
+time interval: 12.8939 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5250, train loss: 1.0003, valid hitrate: 0.710938, valid recall: 0.089843, valid precision: 0.173242, valid ndcg: 0.420838
+time interval: 13.0168 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5300, train loss: 0.9596, valid hitrate: 0.708984, valid recall: 0.090717, valid precision: 0.171094, valid ndcg: 0.416728
+time interval: 13.1406 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5350, train loss: 1.0031, valid hitrate: 0.703125, valid recall: 0.090254, valid precision: 0.174414, valid ndcg: 0.419675
+time interval: 13.2620 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5400, train loss: 0.9881, valid hitrate: 0.695312, valid recall: 0.084362, valid precision: 0.168750, valid ndcg: 0.409299
+time interval: 13.3825 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5450, train loss: 0.9961, valid hitrate: 0.718750, valid recall: 0.087344, valid precision: 0.171680, valid ndcg: 0.420351
+time interval: 13.5042 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5500, train loss: 0.9616, valid hitrate: 0.703125, valid recall: 0.085504, valid precision: 0.171875, valid ndcg: 0.409402
+time interval: 13.6295 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5550, train loss: 1.0169, valid hitrate: 0.695312, valid recall: 0.086347, valid precision: 0.171289, valid ndcg: 0.413664
+time interval: 13.7590 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5600, train loss: 0.9722, valid hitrate: 0.687500, valid recall: 0.082807, valid precision: 0.165039, valid ndcg: 0.409343
+time interval: 13.8838 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5650, train loss: 0.9813, valid hitrate: 0.695312, valid recall: 0.085484, valid precision: 0.171289, valid ndcg: 0.408335
+time interval: 14.0101 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5700, train loss: 0.9718, valid hitrate: 0.716797, valid recall: 0.086877, valid precision: 0.170703, valid ndcg: 0.420525
+time interval: 14.1373 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5750, train loss: 0.9716, valid hitrate: 0.691406, valid recall: 0.080127, valid precision: 0.171289, valid ndcg: 0.420116
+time interval: 14.2629 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5800, train loss: 0.9605, valid hitrate: 0.714844, valid recall: 0.083734, valid precision: 0.166992, valid ndcg: 0.404598
+time interval: 14.3853 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5850, train loss: 0.9461, valid hitrate: 0.703125, valid recall: 0.088565, valid precision: 0.176172, valid ndcg: 0.417841
+time interval: 14.5072 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5900, train loss: 0.9540, valid hitrate: 0.693359, valid recall: 0.085234, valid precision: 0.167187, valid ndcg: 0.409111
+time interval: 14.6341 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 5950, train loss: 0.9507, valid hitrate: 0.685547, valid recall: 0.084077, valid precision: 0.167969, valid ndcg: 0.406632
+time interval: 14.7613 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 6000, train loss: 0.9564, valid hitrate: 0.699219, valid recall: 0.083364, valid precision: 0.171680, valid ndcg: 0.417148
+time interval: 14.8873 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 6050, train loss: 0.9345, valid hitrate: 0.681641, valid recall: 0.082234, valid precision: 0.169336, valid ndcg: 0.402096
+time interval: 15.0186 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 6100, train loss: 0.9573, valid hitrate: 0.722656, valid recall: 0.088161, valid precision: 0.169336, valid ndcg: 0.419590
+time interval: 15.1413 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 6150, train loss: 0.9324, valid hitrate: 0.703125, valid recall: 0.084535, valid precision: 0.166602, valid ndcg: 0.406219
+time interval: 15.2643 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 6200, train loss: 0.9683, valid hitrate: 0.728516, valid recall: 0.090304, valid precision: 0.178906, valid ndcg: 0.433866
+time interval: 15.3856 min
+total: 604
+topN: 10
+movielens_E-UPMiM_b128_lr0.001_d32_len10_topN10
+iter: 6250, train loss: 0.9655, valid hitrate: 0.707031, valid recall: 0.086020, valid precision: 0.166016, valid ndcg: 0.427085
 early stopping...
-total: 512
+total: 604
 topN: 10
-valid hitrate: 0.533203, valid recall: 0.046844, valid precision: 0.110156, valid ndcg: 0.295714
-total: 512
+valid hitrate: 0.724609, valid recall: 0.094285, valid precision: 0.184961, valid ndcg: 0.434193
+total: 604
 topN: 10
-test hitrate: 0.505859, test recall: 0.040634, test precision: 0.100195, test ndcg: 0.276999
+test hitrate: 0.754967, test recall: 0.095508, test precision: 0.189238, test ndcg: 0.455733
