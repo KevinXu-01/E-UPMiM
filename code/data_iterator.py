@@ -76,11 +76,11 @@ class DataIterator:
         else:
             total_user = len(self.users)
             if self.index >= total_user:
-                self.index = 0
+                prev_index = self.index - self.eval_batch_size
+                self.eval_batch_size = total_user - prev_index
+                self.index = prev_index
                 raise StopIteration
             user_id_list = self.users[self.index: self.index + self.eval_batch_size]
-            if len(user_id_list) < self.eval_batch_size:
-                raise StopIteration
             self.index += self.eval_batch_size
 
         age_list = []
