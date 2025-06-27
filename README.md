@@ -60,5 +60,5 @@ If you find our work useful for your research and applications, please kindly co
   volume={},
   number={},
   pages={1-5},
-  doi={10.1109/ISCAS58744.2025.TBD}}
+  doi={10.1109/ISCAS56072.2025.11043438}}
 ```
